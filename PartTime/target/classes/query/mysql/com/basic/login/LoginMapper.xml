@@ -14,9 +14,9 @@
 			USER_NM ,
 			USER_NICK ,
 			RM ,
-			DATE_FORMAT(RGS_DT , '%Y-%m-%d %H:%i:%s') AS RGS_DE ,
+			TO_CHAR(RGS_DT , 'YYYY-MM-DD') AS RGS_DE ,
 			RGS_USER_ID  ,
-			DATE_FORMAT(UPD_DT , '%Y-%m-%d %H:%i:%s') AS UPD_DE ,
+			TO_CHAR(UPD_DT , 'YYYY-MM-DD') AS UPD_DE ,
 			UPD_USER_ID  
 		
 		FROM TB_CO_USER 
@@ -29,9 +29,9 @@
 			USER_NM ,
 			USER_NICK ,
 			RM ,
-			DATE_FORMAT(RGS_DT , '%Y-%m-%d %H:%i:%s') AS RGS_DE ,
+			TO_CHAR(RGS_DT , 'YYYY-MM-DD') AS RGS_DE ,
 			RGS_USER_ID  ,
-			DATE_FORMAT(UPD_DT , '%Y-%m-%d %H:%i:%s') AS UPD_DE ,
+			TO_CHAR(UPD_DT , 'YYYY-MM-DD') AS UPD_DE ,
 			UPD_USER_ID  
 		
 		FROM TB_CO_USER 
