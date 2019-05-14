@@ -1,0 +1,9 @@
+/**
+ * CAS style-sheet
+ * jquery-ui의 style override
+ */
+.ui-tooltip {
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 4px green;
+}

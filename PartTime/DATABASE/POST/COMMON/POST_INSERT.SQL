@@ -1,0 +1,1 @@
+INSERT INTO TB_CO_USER VALUES('kingroma','4235','김정진','김새우','나',now(),'',now(),'');
