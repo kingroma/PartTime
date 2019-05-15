@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parttime.pt.com.basic.login.mapper.LoginMapper">
+	
+	<select id="getUserList" resultType="Map">
+		SELECT *
+		FROM TB_CO_USER
+	</select>
+	
+	<select id='list' resultType="Map">
+		SELECT
+			USER_ID , 
+			USER_PW ,
+			USER_NM ,
+			USER_NICK ,
+			RM ,
+			TO_CHAR(RGS_DT , 'YYYY-MM-DD') AS RGS_DE ,
+			RGS_USER_ID  ,
+			TO_CHAR(UPD_DT , 'YYYY-MM-DD') AS UPD_DE ,
+			UPD_USER_ID  
+		
+		FROM TB_CO_USER 
+	</select>
+	
+	<select id='view' resultType="LoginVO">
+		SELECT
+			USER_ID , 
+			USER_PW ,
+			USER_NM ,
+			USER_NICK ,
+			RM ,
+			TO_CHAR(RGS_DT , 'YYYY-MM-DD') AS RGS_DE ,
+			RGS_USER_ID  ,
+			TO_CHAR(UPD_DT , 'YYYY-MM-DD') AS UPD_DE ,
+			UPD_USER_ID  
+		
+		FROM TB_CO_USER 
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<insert id='insert'>
+		INSERT INTO TB_CO_USER(
+			USER_ID , 
+			USER_PW ,
+			USER_NM ,
+			USER_NICK ,
+			RM ,
+			
+			RGS_DT ,
+			RGS_USER_ID  ,
+			UPD_DT ,
+			UPD_USER_ID  
+		) VALUES (
+			#{userId} ,
+			#{userPw} ,
+			#{userNm} , 
+			#{userNick} ,
+			#{rm} ,
+			
+			NOW() , 
+			#{suserId} , 
+			NOW() , 
+			#{suserId}
+		) 
+	</insert>
+	
+	
+	<insert id='insertLog'>
+		INSERT INTO TB_CO_USER_LOG (
+			USER_ID , 
+			USER_PW , 
+			LOGIN_CODE , 
+			LOGIN_MSG , 
+			RGS_DT 
+		) VALUES (
+			#{userId} , 
+			#{userPw} , 
+			#{loginCode} , 
+			#{loginMsg} , 
+			NOW()
+		) 
+	</insert>
+	
+</mapper>

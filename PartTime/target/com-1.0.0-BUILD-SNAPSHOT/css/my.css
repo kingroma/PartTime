@@ -1,0 +1,29 @@
+.loginBody{
+	width:100%;
+	min-width: 20%;
+	text-align:center;
+	padding-top:10%;
+}
+.loginForm{
+	text-align:center;
+	width:100%;
+}
+.loginDiv{
+	text-align:center;
+}
+.form-div{
+	padding-top:3px;
+	padding-bottom:3px;
+}
+.form-input{
+	width:50%;
+	max-width:300px;
+	padding:4px;
+	border-radius: 5px;
+	border-style: none;
+	display:inline;
+}
+.form-input:FOCUS {
+	border-radius: 5px;
+	border-style: none;
+}

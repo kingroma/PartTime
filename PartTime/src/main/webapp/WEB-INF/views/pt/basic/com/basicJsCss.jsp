@@ -18,7 +18,7 @@
 <script type="text/javascript" src="<c:url value='/js/my.js'/>"></script>
 
 <script>
-	var alertMessage = '${msg}';
+	var alertMessage = '<c:out value="${alertMessage}"/>';
 	if ( alertMessage != '' && alertMessage != null ){
 		alert(alertMessage);
 	}

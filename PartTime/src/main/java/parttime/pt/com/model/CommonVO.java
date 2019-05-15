@@ -8,13 +8,32 @@ public class CommonVO implements Serializable {
 	private String userId = "";
 	private String userPw = "";
 	private String userNm = "";
+	private String userNick = "";
+	private String rm = "";
 	
 	private String rgsDe = "";
 	private String rgsUserId = "";
 	private String updDe = "";
 	private String updUserId = "";
 	
+	// session 
 	private String suserId = "";
+	private String suserNm = "";
+	private String suserNick = "";
+	private String srm = "";
+	
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+	public String getRm() {
+		return rm;
+	}
+	public void setRm(String rm) {
+		this.rm = rm;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -63,6 +82,24 @@ public class CommonVO implements Serializable {
 	}
 	public void setSuserId(String suserId) {
 		this.suserId = suserId;
+	}
+	public String getSuserNm() {
+		return suserNm;
+	}
+	public void setSuserNm(String suserNm) {
+		this.suserNm = suserNm;
+	}
+	public String getSuserNick() {
+		return suserNick;
+	}
+	public void setSuserNick(String suserNick) {
+		this.suserNick = suserNick;
+	}
+	public String getSrm() {
+		return srm;
+	}
+	public void setSrm(String srm) {
+		this.srm = srm;
 	}
 	
 	

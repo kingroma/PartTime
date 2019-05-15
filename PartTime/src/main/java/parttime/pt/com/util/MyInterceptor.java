@@ -3,11 +3,16 @@ package parttime.pt.com.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class MyInterceptor implements HandlerInterceptor{
+import parttime.pt.com.basic.login.service.LoginService;
 
+public class MyInterceptor implements HandlerInterceptor{
+	@Autowired
+	LoginService loginService;
+	
 	// view까지 처리가 끝난 후에 처리됨
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e)
@@ -29,7 +34,21 @@ public class MyInterceptor implements HandlerInterceptor{
 	// 매개변수 Object는 핸들러 정보를 의미한다. ( RequestMapping , DefaultServletHandler )
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("preHandle");
+		String url = request.getRequestURI();
+		
+		boolean isLogin = loginService.isLogin(request);
+		// 로그인 중 
+		if(isLogin) {
+			
+		}
+		// 로그인이 안됨
+		else {
+			// 로그인 페이지 이동 현재 로그인 페이지 인지 확인  
+			if ( url != null && !url.endsWith("login.do")) {
+				System.out.println(request.getContextPath());
+			}
+		}
+		
 		
 		return true;
 	}

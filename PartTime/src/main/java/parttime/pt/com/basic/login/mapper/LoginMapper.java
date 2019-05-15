@@ -9,4 +9,8 @@ public interface LoginMapper {
 	public List<Map<String,String>> list (LoginVO entity);
 	
 	public LoginVO view (LoginVO entity);
+	
+	
+	// log
+	public int insertLog(LoginVO entity);
 }

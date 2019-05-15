@@ -4,22 +4,24 @@ import parttime.pt.com.model.CommonVO;
 
 public class LoginVO extends CommonVO{
 	private static final long serialVersionUID = 5627981987701506596L;
-
-	private String userNick = "";
-	private String rm = "";
 	
-	public String getUserNick() {
-		return userNick;
+	
+	private String loginCode = "";
+	private String loginMsg = "";
+	
+	public String getLoginCode() {
+		return loginCode;
 	}
-	public void setUserNick(String userNick) {
-		this.userNick = userNick;
+	public void setLoginCode(String loginCode) {
+		this.loginCode = loginCode;
 	}
-	public String getRm() {
-		return rm;
+	public String getLoginMsg() {
+		return loginMsg;
 	}
-	public void setRm(String rm) {
-		this.rm = rm;
+	public void setLoginMsg(String loginMsg) {
+		this.loginMsg = loginMsg;
 	}
+	
 	
 	
 }

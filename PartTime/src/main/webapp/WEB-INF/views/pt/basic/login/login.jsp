@@ -14,13 +14,17 @@
 		<form:form commandName="loginVO" name="form1" id="form1" method="post" cssClass="form-signin loginForm">
 			<div class='loginDiv'>
 				<div class='form-div'>
-					<input type="text" id="userId" name='userId' class="form-input" required="required" placeholder="아이디">
+					<input type="text" id="userId" name='userId' class="form-input" required="required" placeholder="아이디" value='<c:out value="${userId }"/>' >
 				</div>
 				<div class='form-div'>
 					<input type="password" id="userPw" name='userPw' class="form-input" required="required" placeholder="비밀번호">
 				</div>
+				
+				<div class='form-div' style='color:#ff2222;'>
+					<c:out value="${loginMessage }"/>
+				</div>
+				
 				<div class='form-div' style='padding-top:20px;'>
-					<!-- <a href='javascript:fn_save()' class="btn btn-primary" style='width:50%;max-width:300px;'>로그인</a> -->
 					<button onclick='javascript:fn_save()' class="btn btn-primary" style='width:50%;max-width:300px;'>로그인</button>
 				</div>
 			</div>
