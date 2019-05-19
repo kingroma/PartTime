@@ -1,3 +1,12 @@
+body{
+	overflow: hidden;
+}
+.center{
+	text-align:center;
+}
+.right{
+	text-align:right;	
+}
 .loginBody{
 	width:100%;
 	min-width: 20%;
@@ -26,4 +35,68 @@
 .form-input:FOCUS {
 	border-radius: 5px;
 	border-style: none;
+}
+
+
+/* menu */
+.headerDiv{
+	width: 100%;
+	height:7%;
+	position:fixed;
+}
+.headerDivFake{
+	height:7%;
+}
+.headerTable{
+	width: 100%;
+	height:100%;
+}
+.footerDiv{
+	width:100%;
+	height:7%;
+	position:fixed;
+	top:93%;
+}
+.footerTable{
+	width:100%;
+	height:100%;
+	
+}
+.mainDiv{
+	height:86%;
+}
+
+.homeDiv{
+	width:100%;
+	height:100%;
+	overflow-y: auto;
+}
+
+.videoTitle{
+	font-weight:bold;
+}
+
+.videoText{
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	height:20px;
+	overflow:hidden;
+}
+
+.videoLast{
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	overflow-x:hidden;
+}
+
+.homeDetailDiv{
+	display:none;
+	height:86%;
+	width:100%;
+	position:fixed;
+	background-color:white;
+	z-index:1;
+	border-bottom:2px solid black;
 }

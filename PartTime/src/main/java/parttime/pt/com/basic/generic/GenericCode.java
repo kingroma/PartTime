@@ -3,7 +3,7 @@ package parttime.pt.com.basic.generic;
 public class GenericCode {
 	public final static String ALERT_MESSAGE = "alertMessage";
 	public final static String LOGIN_MESSAGE = "loginMessage";
-	
+	public final static String PAGE_MOVE_VAL = "pageMoveUrl";
 	
 	// Login Error Code
 	// 정상

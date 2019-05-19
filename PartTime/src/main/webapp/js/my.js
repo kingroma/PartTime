@@ -65,12 +65,38 @@ function createLoading(divId, words) {
 
 function goAction(path, formId){
 	var form = (isString(formId) == "")?"form1":formId;
-
     var loadAt = true;
-    
     if(loadAt){
     	onLoading();
     }
-    
 	$('#'+form).attr("action", getContextPath()+path).submit();
+}
+
+function goAjax(path, params, msgAt){
+	var result = null;
+	msgAt = (isString(msgAt) == "")?"N":msgAt.toUpperCase();
+	$.ajaxSettings.traditional = true;  // Array전송시 필요(jquery 1.4 이상)
+	$.ajax({
+		type: "POST",
+		url:  (getContextPath()+path),
+		data: params,
+		async: false,
+		cache: false,
+		dataType: "json",
+		success: function(data){
+			result = data;
+			if(msgAt != "N" && result != null && result.message != null && result.message != ""){
+				// <br/>을 \n으로 치환
+ 	   			var re = /<br *\/?>/gi;
+ 	   			alert((result.message).replace(re, '\n'));
+			}
+		}, error:function (data, textStatus, jqXHR) {
+			ajaxError(data, textStatus, jqXHR);
+		}, beforeSend:function(){
+
+	    }, complete:function(){
+	    	offLoading();
+	    }
+	});
+	return result;
 }

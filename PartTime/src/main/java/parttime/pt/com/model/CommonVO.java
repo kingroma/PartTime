@@ -22,6 +22,7 @@ public class CommonVO implements Serializable {
 	private String suserNick = "";
 	private String srm = "";
 	
+	
 	public String getUserNick() {
 		return userNick;
 	}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parttime.pt.com.contents.home.mapper.HomeMapper">
+	<select id='listVideo' resultType="HomeVO">
+		SELECT 
+			VIDEO_ID , 
+			CASE WHEN LENGTH(VIDEO_NM) > 15 THEN SUBSTR(VIDEO_NM,1,15) || '...' ELSE VIDEO_NM END AS VIDEO_NM  ,
+			VIDEO_CN ,
+			VIDEO_IMAGE ,
+			VIDEO_URL , 
+			VIDEO_MINI_URL ,
+			
+			VIDEO_CNT ,
+			TO_CHAR(RGS_DT,'YYYY-MM-DD HH24:MI:SS') AS RGS_DE , 
+			TO_CHAR(UPD_DT,'YYYY-MM-DD HH24:MI:SS') AS UPD_DE  
+			 
+		FROM TB_CT_VIDEO V
+		
+		ORDER BY RGS_DT DESC 
+	</select>
+	
+	<select id='viewVideo' resultType="HomeVO">
+		SELECT 
+			VIDEO_ID , 
+			CASE WHEN LENGTH(VIDEO_NM) > 15 THEN SUBSTR(VIDEO_NM,1,15) || '...' ELSE VIDEO_NM END AS VIDEO_NM  ,
+			VIDEO_CN ,
+			VIDEO_IMAGE ,
+			VIDEO_URL , 
+			VIDEO_MINI_URL ,
+			
+			VIDEO_CNT ,
+			TO_CHAR(RGS_DT,'YYYY-MM-DD HH24:MI:SS') AS RGS_DE , 
+			TO_CHAR(UPD_DT,'YYYY-MM-DD HH24:MI:SS') AS UPD_DE  
+			 
+		FROM TB_CT_VIDEO V
+		WHERE V.VIDEO_ID = #{videoId}
+		ORDER BY RGS_DT DESC 
+	</select>
+</mapper>

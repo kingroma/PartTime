@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="parttime.pt.com.basic.menu.mapper.MenuMapper">
+	<select id='list' resultType="Map">
+		SELECT 
+			M.MENU_ID, 
+			M.MENU_NM, 
+			M.MENU_IMAGE_URL, 
+			M.MENU_LEVEL, 
+			M.MENU_SORT_SN, 
+			M.MENU_URL
+		FROM TB_CO_MENU M
+		
+		ORDER BY M.MENU_LEVEL , M.MENU_SORT_SN 
+	</select>
+</mapper>

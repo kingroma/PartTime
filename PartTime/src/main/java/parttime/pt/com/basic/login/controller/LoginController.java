@@ -13,6 +13,7 @@ import parttime.pt.com.basic.generic.GenericCode;
 import parttime.pt.com.basic.generic.GenericString;
 import parttime.pt.com.basic.login.model.LoginVO;
 import parttime.pt.com.basic.login.service.LoginService;
+import parttime.pt.com.util.ControllerUtil;
 import parttime.pt.com.util.DateUtil;
 
 
@@ -44,7 +45,7 @@ public class LoginController {
 		String RETURN_MESSAGE = GenericString.getMsg(RETURN_CODE);
 		System.out.println("[["+RETURN_CODE+"]]" + RETURN_MESSAGE);
 		if ( RETURN_CODE == GenericCode.USER_LOGIN_SUCCESS ) {
-			return "redirect:/main.do";
+			return ControllerUtil.redirectPost(request, ra, "/main.do");
 		}else {
 			ra.addFlashAttribute(GenericCode.LOGIN_MESSAGE,RETURN_MESSAGE);
 			return "redirect:/login.do";
