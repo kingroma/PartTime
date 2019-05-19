@@ -19,7 +19,8 @@ public class HomeVO extends CommonVO{
 	private String badAt = "";
 	private String atNm = "";
 	private String at = "";
-	
+	private String replyId = "";
+	private String replyText = "";
 
 	public String getHomePage() {
 		return homePage;
@@ -131,6 +132,22 @@ public class HomeVO extends CommonVO{
 
 	public void setAt(String at) {
 		this.at = at;
+	}
+
+	public String getReplyId() {
+		return replyId;
+	}
+
+	public void setReplyId(String replyId) {
+		this.replyId = replyId;
+	}
+
+	public String getReplyText() {
+		return replyText;
+	}
+
+	public void setReplyText(String replyText) {
+		this.replyText = replyText;
 	}
 	
 	

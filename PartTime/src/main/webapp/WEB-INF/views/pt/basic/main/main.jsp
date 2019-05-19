@@ -9,23 +9,39 @@
 <title>PartTime</title>
 </head>
 <body>
-<script>
-	var contentsTarget = 'home';
-</script>
-<%@include file="/WEB-INF/views/pt/basic/com/header.jsp" %>
-<div class='mainDiv'>
-	<!-- <div>Main</div> -->
-	<div id='mainHomeDiv'>
-		<%@include file="/WEB-INF/views/pt/contents/home/homeDetail.jsp" %>
-		<%@include file="/WEB-INF/views/pt/contents/home/home.jsp" %>
+	<input type='hidden' id='videoId' name='videoId' value=''/>
+	<script>
+		var contentsTarget = 'home';
+	</script>
+	<%@include file="/WEB-INF/views/pt/basic/com/header.jsp" %>
+	<div class='mainDiv'>
+		<!-- <div>Main</div> -->
+		<div id='mainHomeDiv'>
+			<%@include file="/WEB-INF/views/pt/contents/home/homeDetail.jsp" %>
+			<%@include file="/WEB-INF/views/pt/contents/home/home.jsp" %>
+		</div>
 	</div>
-</div>
-<%@include file="/WEB-INF/views/pt/basic/com/footer.jsp" %>
+	<%@include file="/WEB-INF/views/pt/basic/com/footer.jsp" %>
 </body>
 	<script>
+		var suserId = '<c:out value="${mainVO.suserId}"/>';
+		var suserNm = '<c:out value="${mainVO.suserNm}"/>';
+		var suserNick = '<c:out value="${mainVO.suserNick}"/>';
+		var srm = '<c:out value="${mainVO.srm}"/>'
+		
 		function test(){
 			var r = goAjax('/menu/list.do');
 			console.dir(r);
+		}
+		
+		$(document).ready(function(){
+			setInterval(function(){ 
+				myInterval()
+			}, 500);
+		});
+		
+		function myInterval(){
+			fn_resizeDetail();
 		}
 	</script>
 </html>

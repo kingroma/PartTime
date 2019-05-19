@@ -46,6 +46,7 @@ public class MyInterceptor implements HandlerInterceptor{
 			// 로그인 페이지 이동 현재 로그인 페이지 인지 확인  
 			if ( url != null && !url.endsWith("login.do")) {
 				System.out.println(request.getContextPath());
+				request.getRequestDispatcher("login.do");
 			}
 		}
 		

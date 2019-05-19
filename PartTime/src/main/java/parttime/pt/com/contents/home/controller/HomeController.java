@@ -43,7 +43,17 @@ public class HomeController {
 	@ResponseBody
 	@RequestMapping(value = "/insertVideoGoodBad.do", method = RequestMethod.POST )
 	public HomeVO insertVideoGoodBad(HomeVO homeVO , Model model, HttpServletRequest request) {
+		// homeService.insertVideoGoodBad(homeVO);
+		homeService.deleteVideoGoodBad(homeVO);
 		homeService.insertVideoGoodBad(homeVO);
+		return homeVO ;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteVideoGoodBad.do", method = RequestMethod.POST )
+	public HomeVO deleteVideoGoodBad(HomeVO homeVO , Model model, HttpServletRequest request) {
+		// homeService.insertVideoGoodBad(homeVO);
+		homeService.deleteVideoGoodBad(homeVO);
 		return homeVO ;
 	}
 	
@@ -54,12 +64,11 @@ public class HomeController {
 		listVideoReply = homeService.listVideoReply(homeVO);
 		return listVideoReply ;
 	}
-	
+		
 	@ResponseBody
 	@RequestMapping(value = "/insertVideoReply.do", method = RequestMethod.POST )
 	public HomeVO insertVideoReply(HomeVO entity,  Model model) {
-		HomeVO insertVideoReply = null;
 		int ret = homeService.insertVideoReply(entity);
-		return insertVideoReply;
+		return entity;
 	}
 }

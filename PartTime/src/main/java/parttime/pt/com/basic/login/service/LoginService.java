@@ -53,6 +53,7 @@ public class LoginService {
 			if ( vo != null && vo.getUserId() != null && !"".equals(vo.getUserId()) && vo.getUserId().equals(loginVO.getUserId()) ) {
 				if ( vo.getUserPw() != null && !"".equals(vo.getUserPw()) && loginVO.getUserPw().equals(vo.getUserPw())) {
 					RETURN_CODE = GenericCode.USER_LOGIN_SUCCESS;
+					setLoginSessionInformation(request,vo);
 				} else {
 					// 비밀번호가 일치하지 않았을 때 
 					RETURN_CODE = GenericCode.USER_PW_INCORRECT;
@@ -94,6 +95,27 @@ public class LoginService {
 		session.setAttribute("suserNick", loginVO.getUserNick());
 		session.setAttribute("srm", loginVO.getSrm());
 		
+	}
+	
+	public LoginVO getLoginInformation(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		
+		LoginVO loginVO = new LoginVO();
+		if ( session != null ){
+			String loginDe = (String)session.getAttribute("loginDe");
+			String suserId = (String)session.getAttribute("suserId");
+			String suserNm = (String)session.getAttribute("suserNm");
+			String suserNick = (String)session.getAttribute("suserNick");
+			String srm = (String)session.getAttribute("srm");
+			
+			loginVO.setLoginDe(loginDe);
+			loginVO.setSuserId(suserId);
+			loginVO.setSuserNm(suserNm);
+			loginVO.setSuserNick(suserNick);
+			loginVO.setSrm(srm);
+		}
+		
+		return loginVO;
 	}
 	
 	// login check

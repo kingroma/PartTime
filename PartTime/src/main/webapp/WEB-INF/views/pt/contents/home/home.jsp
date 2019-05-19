@@ -1,5 +1,5 @@
 
-<div class='homeDiv'>
+<div id='homeDiv' class='homeDiv'>
 	<div id='videoContents'>
 	</div>
 </div>
@@ -67,7 +67,7 @@
 	}
 	
 	function fn_homeVideoOnClickListener(videoId){
-		console.dir(videoId);
+		$('#videoId').val(videoId);
 		fn_openHomeDetailDiv();
 		fn_getHomeDetailVideo(videoId);
 	}

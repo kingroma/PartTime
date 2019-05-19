@@ -33,32 +33,60 @@
 			TO_CHAR(UPD_DT,'YYYY-MM-DD HH24:MI:SS') AS UPD_DE ,
 			
 			-- VIDEO GOOD AT
-			(SELECT COUNT(VGB.*) FROM TB_CT_VIDEO_GOOD_BAD VGB 
-				WHERE V.VIDEO_ID = VGB.VIDEO_ID AND VGB.USER_ID = #{suserId} AND VGB.GOOD_AT = 'Y' ) AS GOOD_AT ,
+			CASE WHEN (SELECT COUNT(VGB.*) FROM TB_CT_VIDEO_GOOD_BAD VGB 
+				WHERE V.VIDEO_ID = VGB.VIDEO_ID AND VGB.USER_ID = #{suserId} AND VGB.GOOD_AT = 'Y' ) > 0 THEN 'Y' ELSE 'N' END  AS GOOD_AT ,
 			-- VIDEO BAD AT
-			(SELECT COUNT(VGB.*) FROM TB_CT_VIDEO_GOOD_BAD VGB 
-				WHERE V.VIDEO_ID = VGB.VIDEO_ID AND VGB.USER_ID = #{suserId} AND VGB.BAD_AT = 'Y' ) AS BAD_AT 
+			CASE WHEN (SELECT COUNT(VGB.*) FROM TB_CT_VIDEO_GOOD_BAD VGB 
+				WHERE V.VIDEO_ID = VGB.VIDEO_ID AND VGB.USER_ID = #{suserId} AND VGB.BAD_AT = 'Y' ) > 0 THEN 'Y' ELSE 'N' END AS BAD_AT 
 			 
 		FROM TB_CT_VIDEO V
 		WHERE V.VIDEO_ID = #{videoId}
 		ORDER BY RGS_DT DESC 
 	</select>
 	
+	<select id='viewVideoGoodBad' resultType="HomeVO">
+		SELECT
+			VIDEO_ID , 
+			USER_ID , 
+			GOOD_AT , 
+			BAD_AT , 
+			TO_CHAR(RGS_DT,'YYYY-MM-DD HH24:MI:SS') AS RGS_DE
+			 
+		FROM TB_CT_VIDEO_GOOD_BAD
+		WHERE 	VIDEO_ID = #{videoId}
+		AND		USER_ID = #{userId}
+	</select>
+	
 	<insert id='insertVideoGoodBad'>
-		MERGE INTO TB_CT_VIDEO_GOOD_BAD V1
-		USING DUAL V2
-		ON ( V1.VIDEO_ID = #{videoId} AND V1.USER_ID = #{userId} )
-		WHEN MATCHED THEN
-			UPDATE SET 
-				GOOD_AT = #{goodAt} ,
-				BAD_AT = #{badAt} ,
-				RGS_DT = NOW()
-				
-		WHEN NOT MATCHED THEN 
-			INSERT (VIDEO_ID , USER_ID , GOOD_AT , BAD_AT , RGS_DT )
-			VALUES (#{videoId},#{userId},#{goodAt},#{badAt},NOW()) 
-		;
+		INSERT INTO TB_CT_VIDEO_GOOD_BAD (
+			VIDEO_ID , 
+			USER_ID , 
+			GOOD_AT , 
+			BAD_AT , 
+			RGS_DT 
+		) VALUES (
+			#{videoId},
+			#{userId},
+			#{goodAt},
+			#{badAt},
+			NOW()
+		)
 	</insert>
+	
+	<update id='updateVideoGoodBad'>
+		UPDATE TB_CT_VIDEO_GOOD_BAD SET 
+			GOOD_AT = #{goodAt} , 
+			BAD_AT = #{badAt},
+			RGS_DT = NOW()
+		WHERE 	VIDEO_ID = #{videoId}
+		AND		USER_ID = #{userId}
+	</update>
+	
+	<delete id='deleteVideoGoodBad'>
+		DELETE FROM TB_CT_VIDEO_GOOD_BAD
+		WHERE 	VIDEO_ID = #{videoId}
+		AND		USER_ID = #{userId}
+	</delete>
 	
 	<select id='listVideoReply' resultType="HomeVO">
 		SELECT
@@ -73,14 +101,15 @@
 		LEFT OUTER JOIN TB_CO_USER U1
 		ON U1.USER_ID = VR.USER_ID 
 		WHERE VIDEO_ID = #{videoId}
+		ORDER BY VR.RGS_DT ASC 
 	</select>
 	
 	<insert id='insertVideoReply'>
 		<!-- RPLY_0001 -->
-		<selectKey order="BEFORE" resultType="String" keyProperty="videoId">
+		<selectKey order="BEFORE" resultType="String" keyProperty="replyId">
 			SELECT 'RPLY_' || LPAD(( SELECT CASE 
-				WHEN MAX(SUBSTRING(REPLY_ID,6,4)) IS NULL THEN '0' 
-				ELSE MAX(SUBSTRING(REPLY_ID,6,4)) END 
+				WHEN MAX(SUBSTRING(REPLY_ID,6,4)) IS NULL THEN '1' 
+				ELSE CAST ( CAST ( MAX(SUBSTRING(REPLY_ID,6,4)) AS INTEGER ) +1 AS VARCHAR ) END 
 			FROM TB_CT_VIDEO_REPLY ),4,'0') AS VIDEO_ID
 		</selectKey>
 		INSERT INTO TB_CT_VIDEO_REPLY (
@@ -89,12 +118,12 @@
 			USER_ID , 
 			REPLY_TEXT , 
 			RGS_DT 
-		)VALUES (){
+		)VALUES (
 			#{videoId},
 			#{replyId},
 			#{userId},
 			#{replyText},
 			NOW()			
-		}
+		)
 	</insert>
 </mapper>

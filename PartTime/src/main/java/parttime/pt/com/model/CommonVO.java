@@ -2,6 +2,11 @@ package parttime.pt.com.model;
 
 import java.io.Serializable;
 
+import javax.servlet.http.HttpServletRequest;
+
+import parttime.pt.com.basic.login.model.LoginVO;
+import parttime.pt.com.basic.login.service.LoginService;
+
 public class CommonVO implements Serializable {
 	private static final long serialVersionUID = 806045106577821407L;
 	
@@ -15,7 +20,7 @@ public class CommonVO implements Serializable {
 	private String rgsUserId = "";
 	private String updDe = "";
 	private String updUserId = "";
-	
+	private String loginDe = "";
 	// session 
 	private String suserId = "";
 	private String suserNm = "";
@@ -110,6 +115,23 @@ public class CommonVO implements Serializable {
 	public void setAck(String ack) {
 		this.ack = ack;
 	}
+	public String getLoginDe() {
+		return loginDe;
+	}
+	public void setLoginDe(String loginDe) {
+		this.loginDe = loginDe;
+	}
 	
+	public void setSuserInfo(LoginService loginService, HttpServletRequest request){
+		if( loginService != null && request != null ){
+			LoginVO loginVO = loginService.getLoginInformation(request);
+			
+			this.setLoginDe(loginVO.getLoginDe());
+			this.setSuserId(loginVO.getSuserId());
+			this.setSuserNm(loginVO.getSuserNm());
+			this.setSuserNick(loginVO.getSuserNick());
+			this.setSrm(loginVO.getSrm());
+		}
+	}
 	
 }
