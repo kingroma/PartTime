@@ -22,6 +22,8 @@ public class CommonVO implements Serializable {
 	private String suserNick = "";
 	private String srm = "";
 	
+	private String ack = "";
+	
 	
 	public String getUserNick() {
 		return userNick;
@@ -101,6 +103,12 @@ public class CommonVO implements Serializable {
 	}
 	public void setSrm(String srm) {
 		this.srm = srm;
+	}
+	public String getAck() {
+		return ack;
+	}
+	public void setAck(String ack) {
+		this.ack = ack;
 	}
 	
 	

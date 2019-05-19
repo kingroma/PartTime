@@ -15,8 +15,10 @@
 <%@include file="/WEB-INF/views/pt/basic/com/header.jsp" %>
 <div class='mainDiv'>
 	<!-- <div>Main</div> -->
-	<%@include file="/WEB-INF/views/pt/contents/home/homeDetail.jsp" %>
-	<%@include file="/WEB-INF/views/pt/contents/home/home.jsp" %>
+	<div id='mainHomeDiv'>
+		<%@include file="/WEB-INF/views/pt/contents/home/homeDetail.jsp" %>
+		<%@include file="/WEB-INF/views/pt/contents/home/home.jsp" %>
+	</div>
 </div>
 <%@include file="/WEB-INF/views/pt/basic/com/footer.jsp" %>
 </body>

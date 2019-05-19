@@ -20,4 +20,13 @@ public class HomeService {
 	public HomeVO viewVideo(HomeVO entity) {
 		return homeMapper.viewVideo(entity);
 	}
+	public void insertVideoGoodBad(HomeVO entity) {
+		homeMapper.insertVideoGoodBad(entity);
+	}
+	public List<HomeVO> listVideoReply (HomeVO entity){
+		return homeMapper.listVideoReply(entity);
+	}
+	public int insertVideoReply(HomeVO entity) {
+		return homeMapper.insertVideoReply(entity);
+	}
 }

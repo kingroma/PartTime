@@ -15,6 +15,10 @@ public class HomeVO extends CommonVO{
 	private String videoNm = "";
 	private String videoUrl = "";
 	private String videoMiniUrl = "";
+	private String goodAt = "";
+	private String badAt = "";
+	private String atNm = "";
+	private String at = "";
 	
 
 	public String getHomePage() {
@@ -95,6 +99,38 @@ public class HomeVO extends CommonVO{
 
 	public void setVideoMiniUrl(String videoMiniUrl) {
 		this.videoMiniUrl = videoMiniUrl;
+	}
+
+	public String getGoodAt() {
+		return goodAt;
+	}
+
+	public void setGoodAt(String goodAt) {
+		this.goodAt = goodAt;
+	}
+
+	public String getBadAt() {
+		return badAt;
+	}
+
+	public void setBadAt(String badAt) {
+		this.badAt = badAt;
+	}
+
+	public String getAtNm() {
+		return atNm;
+	}
+
+	public void setAtNm(String atNm) {
+		this.atNm = atNm;
+	}
+
+	public String getAt() {
+		return at;
+	}
+
+	public void setAt(String at) {
+		this.at = at;
 	}
 	
 	
